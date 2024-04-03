@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
+    <style type="text/tailwindcss">
+        @layer utilities {
+        }
+      </style>
+</head>
+<body style="background-color: black;">
+
+    <nav class="navbar navbar-expand-lg bg-cyan-900">
+        <div class="container-fluid">
+          <a class="navbar-brand text-4xl text-white" href="/">Academia</a>
+          <a class="navbar-brand text-lg text-white" href="/cursos/">Cursos</a>
+          <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item flex ml-96">
+                {% if request.user.is_authenticated %}
+                <p class="nav-link text-white" aria-current="page" href="#">Profesor@ - {{user.username}}</p>
+                <a href="/logout/" class="py-2 text-black font-semibold">| Salir</a>
+                {% else %}
+                <a href="/login/"><img src="{% static 'acceso2.png' %}" class="mt-1 ml-24 hv1"></a>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+          <a class="navbar-brand text-sm text-white" href="{% url 'cursosProfesor' profesor.idProfesor %}">Mis cursos</a>
+        </div>
+      </nav>
+
+    <div class="grid justify-center">
+      <h1 class="text-white text-4xl font-bold mt-8">Asistencias</h1>
+      <form method="post" class="text-white mx-auto mt-2">
+          {% csrf_token %}
+          {{ asistencia_form.as_p }}
+          <button class="mt-2 middle none center rounded-lg bg-cyan-900 py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-md  transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true">Guardar</button>
+      </form>
+    </div>  
+    
+</body>
+</html>
+
+    

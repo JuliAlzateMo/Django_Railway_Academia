@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+{% block content %}
+
+    <div class="grid justify-center">
+
+        <h1 class="text-white text-6xl font-semibold mt-10"></h1>
+
+
+            <div class="grid gap-4 grid-cols-2 justify-center">
+
+                {% if cursos %}
+
+                {% for cursos in cursos %}
+
+                        <div class="mr-4 mb-4 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <a href="#">
+                                <img class="rounded-t-lg" src="{{cursos.foto.url}}" alt="" />
+                            </a>
+                            <div class="p-4 bg-black">
+                                <a href="#">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">{{cursos.titulo}}</h5>
+                                </a>
+                                <p class="card-text text-white text-xl"><span class="text-white font-extrabold">Descripcion: </span>{{cursos.contenido}}</p>
+                                <p class="card-text text-white"><span class="text-white font-extrabold">Precio: </span>${{cursos.precio}}</p>
+                                <p class="card-text text-white"><span class="text-white font-extrabold">Clases: </span>{{cursos.clases}}</p>
+                                <p class="card-text text-white"><span class="text-white font-extrabold">Fecha Inicio: </span>{{cursos.fechaInicio}}</p>
+                                <p class="card-text text-white"><span class="text-white font-extrabold">Fecha Fin: </span>{{cursos.fechaFin}}</p>
+                                <a href="/formulario/"><button class="mt-6 middle none center rounded-lg bg-white py-2 px-4 font-sans text-xs font-bold uppercase text-black shadow-md  transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true">Solicitar Informacion</button></a>
+                            </div>
+                        </div>
+
+                {% endfor %}
+
+                {% else %}
+    
+                    <div class="grid justify-center ml-10">
+                        <h4 class="text-white text-4xl">No hay Cursos Registrados</h4>
+                        <a href="/" class="ml-48"><button type="button" class="btn bg-orange-700 text-white mt-2 hover:bg-orange-500">Regresar</button></a>
+                    </div>
+
+                {% endif %}
+            </div>
+    </div>
+    
+    
+
+{% endblock %}
+
+               

@@ -1,0 +1,169 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
+    <style type="text/tailwindcss">
+       
+      </style>
+</head>
+<body style="background-color: black;">
+
+    <nav class="navbar navbar-expand-lg bg-indigo-900">
+        <div class="container-fluid">
+          <a class="navbar-brand text-4xl text-white" href="/">Academia</a>
+          <a class="navbar-brand text-lg text-white" href="/cursos/">Cursos</a>
+          <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item flex ml-96">
+                {% if request.user.is_authenticated %}
+                <p class="nav-link text-white" aria-current="page" href="#">Estudiante - {{user.username}}</p>
+                <a href="/logout/" class="py-2 text-black font-semibold">| Salir</a>
+                {% else %}
+                <a href="/login/"><img src="{% static 'acceso2.png' %}" class="mt-1 ml-24 hv1"></a>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+          <a href="{% url 'cursosEstudiante' estudiante.idEstudiante %}" class="text-white mr-6">Mis Cursos</a>
+        </div>
+      </nav>
+
+
+      <div class="grid justify-center mt-6">
+        <h1 class="text-4xl text-white font-bold">Asistencias</h1>
+      </div>
+      
+
+      <div class="grid justify-center mt-2 gap-4 grid-cols-1 container">
+
+        {% if asistencias %}
+
+                {% for asistencias in asistencias %}
+
+                <div class="border-2 border-white p-4 mt-2">
+
+                    {% if asistencias.asistencia1 == True %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #1</h5>
+                        <img src="{% static 'comprobado.png' %}" alt="">
+                    </div>
+                    {% else %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #1</h5>
+                        <img src="{% static 'cancelar.png' %}" alt="">
+                    </div>
+                    {% endif %}
+
+                    {% if asistencias.asistencia2 == True %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #2</h5>
+                        <img src="{% static 'comprobado.png' %}" alt="">
+                    </div>
+                    {% else %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #2</h5>
+                        <img src="{% static 'cancelar.png' %}" alt="">
+                    </div>
+                    {% endif %}
+
+                    {% if asistencias.asistencia3 == True %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #3</h5>
+                        <img src="{% static 'comprobado.png' %}" alt="">
+                    </div>
+                    {% else %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #3</h5>
+                        <img src="{% static 'cancelar.png' %}" alt="">
+                    </div>
+                    {% endif %}
+
+                    {% if asistencias.asistencia4 == True %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #4</h5>
+                        <img src="{% static 'comprobado.png' %}" alt="">
+                    </div>
+                    {% else %}
+                    <div class="flex">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Clase #4</h5>
+                        <img src="{% static 'cancelar.png' %}" alt="">
+                    </div>
+                    {% endif %}
+
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Porcentaje Asistencia: {{asistencias.porcentajeAsistencia}}%</h5>
+                    <h5 class="mb-2 text-lg font-medium tracking-tight text-red-700">Nota: Recuerda que para la aprobacion del Curso, debes tener un minimo de Asistencia del 50%</h5>
+                </div>
+
+                {% endfor %}
+                
+                {% else %}
+    
+                    <div class="grid justify-center ml-10">
+
+                        <h4 class="text-white text-2xl mt-12">Ninguna Asistencia Registrada</h4>
+
+                    </div>
+
+        {% endif %}
+
+      </div>
+
+
+
+      <div class="grid justify-center mt-20">
+        <h1 class="text-4xl text-white font-bold">Calificaciones</h1>
+      </div>
+      
+
+      <div class="grid justify-center mt-2 gap-4 grid-cols-1 container">
+
+        {% if calificaciones %}
+
+                {% for calificaciones in calificaciones %}
+
+                <div class="border-2 border-white p-4 mt-2">
+
+                    {% if calificaciones.calificacion1 %}
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Nota #1: <strong class="text-red-500">{{calificaciones.calificacion1}}</strong></h5>
+                    {% else %}
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Nota #1: 0.0</h5>
+                    {% endif %}
+
+                    {% if calificaciones.calificacion2 %}
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Nota #2: <strong class="text-red-500">{{calificaciones.calificacion2}}</strong></h5>
+                    {% else %}
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Nota #2: 0.0</h5>
+                    {% endif %}
+
+                    {% if calificaciones.calificacion3 %}
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Nota #3: <strong class="text-red-500">{{calificaciones.calificacion3}}</strong></h5>
+                    {% else %}
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Nota #3: 0.0</h5>
+                    {% endif %}
+                    
+
+                    <h5 class="mb-2 text-xl font-bold tracking-tight text-white">Promedio: <strong class="text-red-500">{{calificaciones.promedio}}</strong></h5>
+                    <h5 class="mb-2 text-lg font-medium tracking-tight text-red-700">Nota: Recuerda que para la aprobacion del Curso, debes tener un minimo de Promedio 3.0</h5>
+                </div>
+
+                {% endfor %}
+                
+                {% else %}
+    
+                    <div class="grid justify-center ml-10">
+
+                        <h4 class="text-white text-2xl mt-12">Ninguna Nota Registrada</h4>
+
+                    </div>
+
+        {% endif %}
+
+      </div>
+

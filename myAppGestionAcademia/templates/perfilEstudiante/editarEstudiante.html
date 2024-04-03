@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
+    <style type="text/tailwindcss">
+       
+      </style>
+</head>
+<body style="background-color: black;">
+
+    <nav class="navbar navbar-expand-lg bg-indigo-900">
+        <div class="container-fluid">
+          <a class="navbar-brand text-4xl text-white" href="/">Academia</a>
+          <a class="navbar-brand text-lg text-white" href="/cursos/">Cursos</a>
+          <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item flex ml-96">
+                {% if request.user.is_authenticated %}
+                <p class="nav-link text-white" aria-current="page" href="#">Estudiante - {{user.username}}</p>
+                <a href="/logout/" class="py-2 text-black font-semibold">| Salir</a>
+                {% else %}
+                <a href="/login/"><img src="{% static 'acceso2.png' %}" class="mt-1 ml-24 hv1"></a>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+<div class="min-h-screen bg-black py-6 flex flex-col justify-center sm:py-12">
+    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div
+            class="absolute inset-0 bg-gradient-to-r from-white bg-white shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+        </div>
+        <div class="text-white relative px-4 py-10 bg-indigo-900 shadow-lg sm:rounded-3xl sm:p-20">
+
+            <div class="text-center pb-6">
+                <h1 class="text-3xl font-bold">Actualiza Datos!!!</h1>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <input
+                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" placeholder="Nombre" name="nombre">
+
+                <input
+                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" placeholder="Apellido" name="apellido">
+
+                <input
+                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black0 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" placeholder="Cedula" name="cedula">
+                
+                <input
+                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" placeholder="Contacto" name="contacto">
+
+                <input
+                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        type="email" placeholder="Email" name="email">
+
+                <input
+                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" placeholder="Direccion" name="direccion">
+
+                <input
+                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                        type="text" placeholder="Ciudad" name="ciudad">
+
+                <div class="flex justify-center">
+
+                    <button type="submit" class="shadow bg-white text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Enviar ➤</button>
+        
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

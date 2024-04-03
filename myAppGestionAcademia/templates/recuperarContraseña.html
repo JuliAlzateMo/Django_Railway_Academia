@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+{% block content %}
+
+    <div class="grid justify-center">
+        <h2 class="text-white text-4xl font-semibold mt-6">Ingresa Correo Electronico</h2>
+
+        <form method="post">
+
+        {% csrf_token %}
+
+        <div class="grid justify-center">
+            <p>
+                <input type="email" name="email" autocomplete="email" maxlength="254" required="" id="id_email" class="text-black mt-8 w-96 focus:ring-0"> 
+            </p>
+        </div>
+        
+        <button type="submit" class="mt-12 flex w-full justify-center rounded-md bg-teal-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ">Enviar</button>
+
+        </form>
+
+        <a href="/login/"><button type="submit" class="mt-12 flex w-full justify-center rounded-md bg-orange-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 ">Regresar</button></a>
+    </div>
+
+{% endblock %}

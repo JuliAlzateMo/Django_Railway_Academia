@@ -1,0 +1,74 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+
+{% block content %}
+
+    
+<style>
+    .login_img_section {
+    background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.6)),url(https://maudestudio.com/wp-content/uploads/2020/04/Habilidades_comerciales.jpg) center center;
+  }
+  </style>
+  <div class="h-screen flex">
+            <div class="hidden lg:flex w-full lg:w-1/2 login_img_section
+            justify-around items-center">
+              <div 
+                    class=" 
+                    bg-black 
+                    opacity-20 
+                    inset-0 
+                    z-0"
+                    >
+  
+                    </div>
+                    
+            </div>
+            <div class="flex w-full lg:w-1/2 justify-center items-center bg-black space-y-8">
+              <div class="w-full px-8 md:px-32 lg:px-24">
+
+              <form method="POST" action="/contactar/" class="bg-black rounded-xl shadow-2xl p-5">
+
+                {% csrf_token %}
+
+                <div class="mx-40">
+                    <h1 class="text-white font-bold text-4xl mb-4">Contacto</h1>
+                </div>
+                
+
+                <div class="flex items-center border-2 mb-4 px-3 rounded-2xl border-white">
+                  <input class="pl-2 w-full border-none bg-black text-white font-semibold focus:ring-0" required="True" type="text" name="txtAsunto" placeholder="Asunto"/>
+                </div>
+
+                <div class="flex items-center border-2 mb-4 px-3 rounded-2xl border-white">
+                  <input class="pl-2 w-full border-none bg-black text-white font-semibold focus:ring-0" required="True" type="text" name="txtNombre" placeholder="Nombre Completo"/>
+                </div>
+
+                <div class="flex items-center border-2 mb-4 px-3 rounded-2xl border-white">
+                  <input class="pl-2 w-full border-none bg-black text-white font-semibold focus:ring-0" required="True" type="text" name="txtContacto" placeholder="Contacto"/>
+              </div>
+
+                <div class="flex items-center border-2 mb-4 px-3 rounded-2xl border-white">
+                    <input class="pl-2 w-full border-none bg-black text-white font-semibold focus:ring-0" required="True" type="email" name="txtEmail" placeholder="Email"/>
+                </div>
+
+                <div class="flex items-center border-2 mb-4 px-3 rounded-2xl border-white">
+                    <input class="pl-2 w-full border-none bg-black text-white font-semibold focus:ring-0" required="True" type="text" name="txtCurso" placeholder="Curso"/>
+                </div>
+
+                <div class="flex items-center border-2 mb-4 px-3 rounded-2xl border-white">
+                    <textarea class="pl-2 w-full border-none bg-black text-white font-semibold focus:ring-0" required="True" type="text" name="txtMensaje" placeholder="Mensaje" cols="20" rows="3" style="resize: none;"></textarea>
+                </div>
+
+                <button type="submit" class="block w-full bg-white mt-5 py-2 rounded-2xl hover:bg-indigo-600 hover:-translate-y-1 transition-all duration-500 text-black font-semibold mb-2">Enviar</button>
+                
+              </form>
+
+              <div class="grid justify-center">
+                <a href="/cursos/"><button class="mx-auto middle none rounded-b-3xl center text-black bg-white py-3 px-6 font-sans text-xs font-bold uppercase shadow-md  transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true">Regresar Cursos</button></a>
+              </div>
+              </div>
+            </div>
+        </div>
+{% endblock %}
